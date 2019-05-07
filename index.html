@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<body background="http://img1.gamersky.com/upimg/pic/2017/04/26/201704260939177437.jpg">
+<body>
+<canvas id="bkimage"></canvas>
 <style>
   .block{
     background-color:grey;
@@ -9,16 +10,60 @@
     padding:20px;
   }
 </style>
+
 <div class="block">
-<h1 style="text-align:center">4O4</h1>
-<p>
+  <h1 style="text-align:center">4O4</h1>
+  <p>
   Life is full of confusing and disordering Particular time,
   a particular location,Do the arranged thing of ten million time in the brain,Step by step ,
   the life is hard to avoid delicacy and stiffness No enthusiasm forever,No unexpected happening of surprising and pleasing So,
   only silently ask myself in mind Next happiness,when will come?
-</p>
-<hr>
-<hr>
+  </p>
+  <hr>
+  <hr>
 </div>
+
+
+<style type="text/css">
+  #bkimage{
+    position: fixed;
+    z-index: -1;
+  }
+</style>
+<script type="text/javascript">
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  
+  var canvas = document.getElementById( 'bkimage' );
+  canvas.width = width;
+  canvas.height = height;
+  
+  var context = canvas.getContext( '2d' );
+  context.setLineDash([5,15]);
+  context.beginPath();
+  context.moveTo(0,0);
+  context.lineTo(width, height );
+  context.stroke();
+  context.closePath();
+
+  posx = 0;
+
+  var run = setInterval(function() {
+    context.strokeStyle = 'white';
+    context.beginPath();
+    context.moveTo(posx,0);
+    context.lineTo(width, height );
+    context.stroke();
+    context.closePath();
+    posx += 100;
+    if(posx > width)posx = 0;
+    context.strokeStyle = 'black';
+    context.beginPath();
+    context.moveTo(posx,0);
+    context.lineTo(width, height );
+    context.stroke();
+    context.closePath();
+  },500);
+</script>
 </body>
 </html>
